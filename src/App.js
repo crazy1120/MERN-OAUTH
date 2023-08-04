@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import { Landing, Login, Signup, Home } from "./screens";
+import { Landing, Login, Signup, Home } from "./pages";
+import * as routes from "./routes";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -18,10 +19,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={user?.email ? <Navigate to="/home" /> : <Landing />}
-        />
+        {routes.common()}
         <Route
           path="/signup"
           element={user?.email ? <Navigate to="/home" /> : <Signup />}
